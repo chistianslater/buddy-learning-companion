@@ -1,0 +1,440 @@
+/* =============================================
+   Chat Interface Styles - Neurodivergent-Friendly Design
+   ============================================= */
+
+/* Base Styles */
+.chat-container {
+  --primary-color: 3, 135, 255; /* Calm blue */
+  --text-color: 30, 41, 59; /* Dark slate */
+  --background-color: 248, 250, 252; /* Light slate */
+  --border-color: 226, 232, 240; /* Soft gray */
+  --success-color: 34, 197, 94; /* Gentle green */
+  --error-color: 239, 68, 68; /* Soft red */
+  --warning-color: 245, 158, 11; /* Warm yellow */
+}
+
+/* Low Stimulus Color Palette */
+.chat-container {
+  background-color: rgb(var(--background-color));
+  color: rgb(var(--text-color));
+}
+
+/* Message Bubble Styles */
+.message-bubble {
+  max-width: 90%;
+  padding: 12px 16px;
+  border-radius: 18px;
+  line-height: 1.5;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.message-bubble.user {
+  background-color: rgb(var(--primary-color));
+  color: white;
+  border-bottom-right-radius: 6px;
+}
+
+.message-bubble.assistant {
+  background-color: white;
+  border: 1px solid rgb(var(--border-color));
+  color: rgb(var(--text-color));
+  border-bottom-left-radius: 6px;
+}
+
+/* Input Area Styles */
+.chat-input {
+  font-size: 16px; /* Prevents zoom on iOS */
+  padding: 12px 16px;
+  border: 2px solid rgb(var(--border-color));
+  border-radius: 12px;
+  background-color: white;
+  transition: border-color 0.2s ease;
+  resize: none;
+  min-height: 48px;
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: rgb(var(--primary-color));
+  box-shadow: 0 0 0 3px rgba(3, 135, 255, 0.1);
+}
+
+/* Button Styles */
+.chat-button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chat-button.primary {
+  background-color: rgb(var(--primary-color));
+  color: white;
+}
+
+.chat-button.primary:hover {
+  background-color: rgb(2, 120, 230);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(3, 135, 255, 0.3);
+}
+
+.chat-button.secondary {
+  background-color: white;
+  color: rgb(var(--text-color));
+  border: 1px solid rgb(var(--border-color));
+}
+
+.chat-button.secondary:hover {
+  background-color: rgb(var(--background-color));
+  border-color: rgb(var(--primary-color));
+}
+
+/* Typing Indicator */
+.typing-indicator {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+}
+
+.typing-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(var(--primary-color));
+  opacity: 0.6;
+}
+
+.typing-dot:nth-child(1) { animation: typing 1.4s infinite 0s; }
+.typing-dot:nth-child(2) { animation: typing 1.4s infinite 0.2s; }
+.typing-dot:nth-child(3) { animation: typing 1.4s infinite 0.4s; }
+
+@keyframes typing {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(-10px); }
+}
+
+/* Quick Action Buttons */
+.quick-action {
+  padding: 8px 12px;
+  font-size: 12px;
+  border-radius: 16px;
+  background-color: white;
+  border: 1px solid rgb(var(--border-color));
+  color: rgb(var(--text-color));
+  transition: all 0.2s ease;
+}
+
+.quick-action:hover {
+  border-color: rgb(var(--primary-color));
+  background-color: rgba(3, 135, 255, 0.05);
+}
+
+/* Session Controls */
+.session-controls {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 12px;
+  padding: 16px;
+}
+
+/* Accessibility Helper */
+.accessibility-panel {
+  background-color: white;
+  border: 1px solid rgb(var(--border-color));
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .chat-container {
+    --text-color: 0, 0, 0;
+    --background-color: 255, 255, 255;
+    --border-color: 0, 0, 0;
+  }
+
+  .message-bubble.assistant {
+    border-width: 2px;
+  }
+
+  .chat-input {
+    border-width: 2px;
+  }
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  .chat-container {
+    --background-color: 15, 23, 42;
+    --text-color: 248, 250, 252;
+    --border-color: 51, 65, 85;
+  }
+
+  .message-bubble.assistant {
+    background-color: rgb(30, 41, 59);
+    border-color: rgb(51, 65, 85);
+  }
+
+  .chat-input {
+    background-color: rgb(30, 41, 59);
+    border-color: rgb(51, 65, 85);
+    color: rgb(248, 250, 252);
+  }
+
+  .session-controls {
+    background-color: rgba(30, 41, 59, 0.9);
+  }
+
+  .accessibility-panel {
+    background-color: rgb(30, 41, 59);
+    border-color: rgb(51, 65, 85);
+  }
+}
+
+/* Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .typing-dot {
+    animation: none;
+    opacity: 0.6;
+  }
+}
+
+/* Focus Management */
+.chat-button:focus,
+.chat-input:focus,
+.quick-action:focus {
+  outline: 2px solid rgb(var(--primary-color));
+  outline-offset: 2px;
+}
+
+/* Screen Reader Only Content */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Large Text Support */
+@media (min-resolution: 120dpi) {
+  .message-bubble,
+  .chat-input,
+  .chat-button {
+    font-size: 18px;
+  }
+}
+
+/* Mobile Optimizations */
+@media (max-width: 768px) {
+  .message-bubble {
+    max-width: 85%;
+    font-size: 15px;
+  }
+
+  .chat-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+
+  .quick-action {
+    font-size: 11px;
+    padding: 6px 10px;
+  }
+
+  .session-controls {
+    padding: 12px;
+  }
+}
+
+/* Tablet Optimizations */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .message-bubble {
+    max-width: 70%;
+  }
+}
+
+/* Desktop Optimizations */
+@media (min-width: 1025px) {
+  .message-bubble {
+    max-width: 60%;
+  }
+
+  .chat-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+}
+
+/* Print Styles */
+@media print {
+  .session-controls,
+  .accessibility-panel,
+  .chat-input {
+    display: none;
+  }
+
+  .message-bubble {
+    break-inside: avoid;
+    border: 1px solid #ccc;
+  }
+}
+
+/* Custom Scrollbar for Webkit Browsers */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
+}
+
+.chat-messages::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-messages::-webkit-scrollbar-thumb {
+  background-color: rgba(3, 135, 255, 0.3);
+  border-radius: 3px;
+}
+
+.chat-messages::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(3, 135, 255, 0.5);
+}
+
+/* Error States */
+.error-message {
+  background-color: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: rgb(220, 38, 38);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+.success-message {
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: rgb(22, 101, 52);
+  border-radius: 8px;
+  padding: 12px;
+  margin: 8px 0;
+}
+
+/* Loading States */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* Responsive Typography */
+.responsive-text {
+  font-size: clamp(14px, 2vw, 16px);
+  line-height: 1.5;
+}
+
+/* Color Blindness Support */
+.colorblind-friendly {
+  --primary-color: 0, 123, 255; /* Blue-green safe */
+  --error-color: 220, 53, 69; /* Clear red */
+  --success-color: 40, 167, 69; /* Clear green */
+  --warning-color: 255, 193, 7; /* Clear yellow */
+}
+
+/* Autism-Friendly Modifications */
+.autism-friendly {
+  --primary-color: 70, 130, 180; /* Steel blue - calming */
+  --background-color: 245, 245, 245; /* Very light gray */
+  --border-color: 200, 200, 200; /* Soft gray */
+  --text-color: 50, 50, 50; /* Dark gray - high contrast */
+}
+
+.autism-friendly .message-bubble {
+  border-radius: 8px; /* Less rounded for clarity */
+}
+
+.autism-friendly .chat-button {
+  border-radius: 4px; /* Less rounded */
+}
+
+/* ADHD-Friendly Modifications */
+.adhd-friendly {
+  --primary-color: 255, 140, 0; /* Orange - attention-grabbing */
+  --background-color: 250, 250, 250; /* Clean white */
+  --border-color: 230, 230, 230; /* Subtle borders */
+}
+
+.adhd-friendly .message-bubble {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Performance Optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Utility Classes */
+.text-calming {
+  color: rgb(70, 130, 180);
+}
+
+.bg-gentle {
+  background-color: rgba(248, 250, 252, 0.8);
+}
+
+.border-soft {
+  border-color: rgba(226, 232, 240, 0.6);
+}
+
+.focus-visible:focus {
+  outline: 2px solid rgb(var(--primary-color));
+  outline-offset: 2px;
+}
+
+/* Animation Utilities */
+.animate-gentle {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animate-none {
+  transition: none;
+}
+
+/* State Classes */
+.is-typing {
+  opacity: 0.7;
+}
+
+.is-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.is-focused {
+  transform: scale(1.02);
+}
+
+.is-loading {
+  pointer-events: none;
+}

@@ -34,6 +34,164 @@ export type Database = {
     }
     public: {
         Tables: {
+            user_interests: {
+                Row: {
+                    id: string
+                    user_id: string
+                    interest_name: string
+                    intensity_level: number
+                    created_at: string
+                    updated_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id: string
+                    interest_name: string
+                    intensity_level?: number
+                    created_at?: string
+                    updated_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string
+                    interest_name?: string
+                    intensity_level?: number
+                    created_at?: string
+                    updated_at?: string
+                }
+                Relationships: []
+            }
+            competencies: {
+                Row: {
+                    id: string
+                    domain: Database["public"]["Enums"]["competency_domain"]
+                    title: string
+                    description: string | null
+                    grade_level: number
+                    federal_state: Database["public"]["Enums"]["federal_state"]
+                    prerequisites: string[]
+                    learning_objectives: string[]
+                    created_at: string
+                    updated_at: string
+                }
+                Insert: {
+                    id?: string
+                    domain: Database["public"]["Enums"]["competency_domain"]
+                    title: string
+                    description?: string | null
+                    grade_level: number
+                    federal_state: Database["public"]["Enums"]["federal_state"]
+                    prerequisites?: string[]
+                    learning_objectives?: string[]
+                    created_at?: string
+                    updated_at?: string
+                }
+                Update: {
+                    id?: string
+                    domain?: Database["public"]["Enums"]["competency_domain"]
+                    title?: string
+                    description?: string | null
+                    grade_level?: number
+                    federal_state?: Database["public"]["Enums"]["federal_state"]
+                    prerequisites?: string[]
+                    learning_objectives?: string[]
+                    created_at?: string
+                    updated_at?: string
+                }
+                Relationships: []
+            }
+            competency_progress: {
+                Row: {
+                    id: string
+                    user_id: string
+                    competency_id: string
+                    status: Database["public"]["Enums"]["progress_status"]
+                    confidence_score: number | null
+                    last_interaction: string
+                    attempts: number
+                    session_count: number
+                    total_time_minutes: number
+                    created_at: string
+                    updated_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id: string
+                    competency_id: string
+                    status?: Database["public"]["Enums"]["progress_status"]
+                    confidence_score?: number | null
+                    last_interaction?: string
+                    attempts?: number
+                    session_count?: number
+                    total_time_minutes?: number
+                    created_at?: string
+                    updated_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string
+                    competency_id?: string
+                    status?: Database["public"]["Enums"]["progress_status"]
+                    confidence_score?: number | null
+                    last_interaction?: string
+                    attempts?: number
+                    session_count?: number
+                    total_time_minutes?: number
+                    created_at?: string
+                    updated_at?: string
+                }
+                Relationships: [
+                    {
+                        foreignKeyName: "competency_progress_competency_id_fkey"
+                        columns: ["competency_id"]
+                        isOneToOne: false
+                        referencedRelation: "competencies"
+                        referencedColumns: ["id"]
+                    }
+                ]
+            }
+            learning_context: {
+                Row: {
+                    id: string
+                    user_id: string
+                    preferred_times: string[]
+                    session_duration: Database["public"]["Enums"]["session_duration_preference"]
+                    engagement_patterns: Json | null
+                    learning_style_preferences: Json | null
+                    sensitivity_settings: Json | null
+                    last_session_at: string | null
+                    total_sessions: number
+                    created_at: string
+                    updated_at: string
+                }
+                Insert: {
+                    id?: string
+                    user_id: string
+                    preferred_times?: string[]
+                    session_duration?: Database["public"]["Enums"]["session_duration_preference"]
+                    engagement_patterns?: Json | null
+                    learning_style_preferences?: Json | null
+                    sensitivity_settings?: Json | null
+                    last_session_at?: string | null
+                    total_sessions?: number
+                    created_at?: string
+                    updated_at?: string
+                }
+                Update: {
+                    id?: string
+                    user_id?: string
+                    preferred_times?: string[]
+                    session_duration?: Database["public"]["Enums"]["session_duration_preference"]
+                    engagement_patterns?: Json | null
+                    learning_style_preferences?: Json | null
+                    sensitivity_settings?: Json | null
+                    last_session_at?: string | null
+                    total_sessions?: number
+                    created_at?: string
+                    updated_at?: string
+                }
+                Relationships: []
+            }
             customers: {
                 Row: {
                     id: string
@@ -216,6 +374,33 @@ export type Database = {
             | "past_due"
             | "unpaid"
             | "paused"
+            competency_domain:
+            | "Mathematik"
+            | "Deutsch"
+            | "Sachkunde"
+            | "Englisch"
+            | "Kunst"
+            | "Musik"
+            | "Sport"
+            federal_state:
+            | "Baden-Württemberg"
+            | "Bayern"
+            | "Berlin"
+            | "Brandenburg"
+            | "Bremen"
+            | "Hamburg"
+            | "Hessen"
+            | "Mecklenburg-Vorpommern"
+            | "Niedersachsen"
+            | "Nordrhein-Westfalen"
+            | "Rheinland-Pfalz"
+            | "Saarland"
+            | "Sachsen"
+            | "Sachsen-Anhalt"
+            | "Schleswig-Holstein"
+            | "Thüringen"
+            progress_status: "not_started" | "in_progress" | "mastered" | "struggling"
+            session_duration_preference: "short_15" | "medium_30" | "long_45" | "flexible"
         }
         CompositeTypes: {
             [_ in never]: never
